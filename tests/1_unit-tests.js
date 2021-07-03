@@ -63,8 +63,12 @@ suite('Unit Tests', function(){
     suite('Function convertHandler.getReturnUnit(initUnit)', function() {
 
         test('convertHandler should return the correct return unit for each valid input unit', function(done) {
-            const initUnit = 'gal'
-            assert.equal(convertHandler.getReturnUnit(initUnit), 'L')
+            const units = ['gal', 'l', 'mi', 'km', 'lbs', 'kg']
+            const returnUnit = ['L', 'gal', 'km', 'mi', 'kg', 'lbs']
+
+            units.forEach((unit, i) => {
+                assert.equal(convertHandler.getReturnUnit(unit), returnUnit[i])
+            })
             done()
         })
     })
@@ -72,8 +76,19 @@ suite('Unit Tests', function(){
     suite('Function convertHandler.spellOutUnit(unit)', function() {
 
         test('convertHandler should correctly return the spelled-out string unit for each valid input unit', function(done) {
-            const unit = 'L'
-            assert.equal(convertHandler.spellOutUnit(unit), 'liters')
+            const units = ['gal', 'L', 'mi', 'km', 'lbs', 'kg']
+            const spelledOutUnits = [
+                'gallons',
+                'liters',
+                'miles',
+                'kilometers',
+                'pounds',
+                'kilograms'
+            ]
+
+            units.forEach((unit, i) => {
+                assert.equal(convertHandler.spellOutUnit(unit), spelledOutUnits[i])
+            })
             done()
         })
     })
